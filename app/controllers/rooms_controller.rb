@@ -61,7 +61,7 @@ class RoomsController < ApplicationController
   private 
   		def room_params
 	  	# shortcut for whitelisting for data. Makes site secure
-	  	params.require(:room).permit(:title, :address, :description, :max_guests, :bedrooms, :price)
+	  	params.require(:room).permit(:title, :address, :description, :max_guests, :bedrooms, :price, :image)
 	  	end
 
 end

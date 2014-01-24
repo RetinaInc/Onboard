@@ -23,10 +23,12 @@
 
     <nav class="seven columns">
       
-     
+    
 
 
       <% if current_user.present? %>
+
+      
                <strong><%= current_user.username %></strong>
               <%= link_to "Dashboard", "#" %>
               <%= link_to "Add a room", new_room_path %>
