@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   # the application controller deals with all of our other 
   # controllers like a boss
+  # THIS IS THE DADDY
 
 # let's make a shortcut called current_user
 
@@ -20,5 +21,17 @@ class ApplicationController < ActionController::Base
 # as well as in our controllers
 
 	helper_method :current_user
+
+	# let's add an action to make anone logged out
+	# go to the sign up page 
+
+		def make_sure_logged_in
+			if current_user.nil?
+				flash[:error] = "You need to be signed up"
+				redirect_to new_user_path
+			end
+
+		end
+
 
 end

@@ -1,4 +1,11 @@
 class RoomsController < ApplicationController
+
+  # before quite a few of the actions below
+  # make sure we're logged in
+
+  before_action :make_sure_logged_in, except: [:index, :show]
+
+
   def index
   	@rooms = Room.near("London")
   end
@@ -10,11 +17,11 @@ class RoomsController < ApplicationController
   end
 
   def new
-  @room = Room.new
+  @room = current_user.rooms.new
   end
 
   def create
-  		@room = Room.new(room_params)
+  		@room = current_user.rooms.new(room_params)
 
   		if @room.save
   			flash[:success] = "You've added your room"
@@ -27,12 +34,12 @@ class RoomsController < ApplicationController
 
 
   def edit
-  		@room = Room.find(params[:id])
+  		@room = current_user.rooms.find(params[:id])
 
   end
 
   def update
-  	@room = Room.find(params[:id])
+  	@room = current_user.rooms.find(params[:id])
 
   	if @room.update(room_params) 
   		flash[:success] = "Your room has been updated" 
@@ -45,7 +52,7 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-  	@room = Room.find(params[:id])
+  	@room = current_user.rooms.find(params[:id])
   	@room.destroy
   	flash[:success] = "Your room has been deleted" 
   	redirect_to root_path
