@@ -1,9 +1,18 @@
 Onboard::Application.routes.draw do
   
   
+ 
   # this links urls with your rooms controller so you need 
   # to use the same words
-  resources :rooms
+  # orders arein side the room because we want to place and 
+  # order on a room
+  resources :rooms do
+    resources :orders, only: [:new, :create]
+  end
+
+  # my list of orders don't have to be on a room
+
+  resources :orders, only: [:index, :show]
 
 # sign up our users to the site
   resources :users

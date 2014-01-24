@@ -2,6 +2,7 @@ class Room < ActiveRecord::Base
 
 	# association
 	belongs_to :user
+	has_many :orders
 
  # this is form the rubygeocoder.org site 
 	geocoded_by :address
